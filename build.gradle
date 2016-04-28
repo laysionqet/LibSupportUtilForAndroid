@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+def getPropertyOrDefault = {
+  String property, Object fallback ->
+  if (hasProperty(property)) {
+    return getProperty(property)
+  } else {
+    return fallback
+  }
+}
+
+android {
+  compileSdkVersion getPropertyOrDefault('compileSdkVersion', 23)
+  buildToolsVersion getPropertyOrDefault('buildToolsVersion', '23.0.2')
+
+  defaultConfig {
+    minSdkVersion getPropertyOrDefault('minSdkVersion', 15)
+    targetSdkVersion getPropertyOrDefault('targetSdkVersion', 23)
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+    debug {
+      minifyEnabled false
+    }
+  }
+}
+
+String supportLibVersion = getPropertyOrDefault('supportLibVersion', '23.3.0')
+
+dependencies {
+  compile ("com.android.support:appcompat-v7:$supportLibVersion") {
+    exclude group: 'com.android.support', module: 'animated-vector-drawable'
+    exclude group: 'com.android.support', module: 'support-vector-drawable'
+  }
+  compile ("com.android.support:recyclerview-v7:$supportLibVersion") {
+    exclude group: 'com.android.support', module: 'support-v4'
+    exclude group: 'com.android.support', module: 'support-annotations'
+  }
+}
