@@ -1,4 +1,4 @@
-package moe.laysionqet.support.utils.antileak;
+package moe.laysionqet.support.utils.memory.leak.anti;
 
 import android.app.Activity;
 import android.app.Application;
@@ -12,7 +12,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import moe.laysionqet.support.SupportApp.ActivityLifeCycleCallbacksAdapter;
+import moe.laysionqet.support.app.ActivityLifeCycleCallbacksAdapter;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.os.Build.VERSION.SDK_INT;

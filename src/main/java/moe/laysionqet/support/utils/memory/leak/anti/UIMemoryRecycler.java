@@ -1,4 +1,4 @@
-package moe.laysionqet.support.utils.antileak;
+package moe.laysionqet.support.utils.memory.leak.anti;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
