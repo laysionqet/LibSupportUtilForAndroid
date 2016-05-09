@@ -6,6 +6,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPoolAdapter;
 import com.bumptech.glide.load.engine.bitmap_recycle.LruBitmapPool;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import moe.laysionqet.support.app.SupportApp;
+import moe.laysionqet.support.app.SupportApplicationContext;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.HONEYCOMB;
@@ -43,7 +44,7 @@ public final class BitmapPool implements com.bumptech.glide.load.engine.bitmap_r
   }
 
   private static final class SINGLETON {
-    private static final BitmapPool INSTANCE = new BitmapPool(SupportApp.getContext());
+    private static final BitmapPool INSTANCE = new BitmapPool(SupportApplicationContext.get());
   }
 
   public static BitmapPool get() {
