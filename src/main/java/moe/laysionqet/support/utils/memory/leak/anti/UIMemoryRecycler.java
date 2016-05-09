@@ -137,6 +137,12 @@ public final class UIMemoryRecycler {
           ((WebView) view).destroy();
         } catch (Exception ignored) {
         }
+        try {
+          if (null != view.getParent() && view.getParent() instanceof ViewGroup) {
+            ((ViewGroup) view.getParent()).removeView(view);
+          }
+        } catch (Exception ignored) {
+        }
       }
     } catch (Exception ignored) {
     }
