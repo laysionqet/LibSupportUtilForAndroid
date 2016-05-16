@@ -1,6 +1,7 @@
 package moe.laysionqet.support.utils.memory.leak.anti;
 
 import android.app.Activity;
+import android.app.Application;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.annotation.MainThread;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import java.util.HashSet;
 import java.util.Set;
 import moe.laysionqet.support.BuildConfig;
+import moe.laysionqet.support.app.ActivityLifeCycleCallbacksAdapter;
 
 /**
  * Created by laysionqet on 16/4/28.
@@ -43,6 +45,16 @@ public final class UIMemoryRecycler {
       return;
     }
     sViewRecycleFactories.add(factory);
+  }
+
+  // TODO: 16/5/16 rename the method with better name, haha
+  @MainThread public static void keepEyesOnDestroyedActivity(Application app) {
+    app.registerActivityLifecycleCallbacks(new ActivityLifeCycleCallbacksAdapter() {
+      @Override public void onActivityDestroyed(Activity activity) {
+        super.onActivityDestroyed(activity);
+        UIMemoryRecycler.onActivityDestroy(activity);
+      }
+    });
   }
 
   @MainThread public static void onActivityDestroy(Activity activity) {
