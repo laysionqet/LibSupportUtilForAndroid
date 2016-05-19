@@ -16,6 +16,7 @@ public class SupportApp extends Application {
 
   @Override public void onCreate() {
     sContext = this;
+    SupportApplicationContext.setup(this);
     super.onCreate();
 
     MemoryLeakWatcher.install(this);
